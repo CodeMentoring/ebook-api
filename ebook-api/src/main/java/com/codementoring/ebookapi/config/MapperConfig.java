@@ -16,8 +16,15 @@ public class MapperConfig {
         ModelMapper mapper = new ModelMapper();
         TypeMap<CategoryDTO, Category> typeMap1 = mapper.createTypeMap(CategoryDTO.class, Category.class);
         TypeMap<Category, CategoryDTO> typeMap2 = mapper.createTypeMap(Category.class, CategoryDTO.class);
-        typeMap1.addMapping(CategoryDTO::getNameofCategory, (dest, v) -> dest.setName((String) v));
-        typeMap2.addMapping(Category::getName, (dest, v) -> dest.setNameofCategory((String) v));
+
+        typeMap1.addMapping(CategoryDTO::getName, (dest, v) -> dest.setName((String) v));
+        typeMap2.addMapping(Category::getName, (dest, v) -> dest.setName((String) v));
+
+        typeMap1.addMapping(CategoryDTO::getDescription, (dest, v) -> dest.setDescription((String) v));
+        typeMap2.addMapping(Category::getDescription, (dest, v) -> dest.setDescription((String) v));
+
+
+
         return mapper;
     }
 

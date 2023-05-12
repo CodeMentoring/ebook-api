@@ -24,16 +24,4 @@ public class Category {
     @Column(length = 50, nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private boolean enabled;
-
-
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Category(String name) {
-        this.name = name;
-    }
 }

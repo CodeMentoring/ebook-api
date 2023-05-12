@@ -22,13 +22,12 @@ public class CategoryDTO {
     //@Max(value = 500)
     //@Min(value = 1)
     //@Pattern(regexp = "[A-Za-z ]*")
-    private String nameofCategory;
+    private String name;
 
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 150)
-    private String descriptionCategory;
+    private String description;
 
-    @NotNull
-    private boolean enabledCategory;
+
 }
