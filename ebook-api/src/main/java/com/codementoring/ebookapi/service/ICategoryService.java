@@ -1,4 +1,6 @@
 package com.codementoring.ebookapi.service;
 
-public interface ICategoryService {
+import com.codementoring.ebookapi.model.Category;
+
+public interface ICategoryService extends ICRUD<Category, Integer>{
 }

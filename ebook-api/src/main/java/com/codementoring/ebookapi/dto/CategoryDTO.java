@@ -1,4 +1,34 @@
 package com.codementoring.ebookapi.dto;
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDTO {
+
+    private Integer idCategory;
+
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 50)
+    //@Email
+    //@Max(value = 500)
+    //@Min(value = 1)
+    //@Pattern(regexp = "[A-Za-z ]*")
+    private String nameofCategory;
+
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 150)
+    private String descriptionCategory;
+
+    @NotNull
+    private boolean enabledCategory;
 }
