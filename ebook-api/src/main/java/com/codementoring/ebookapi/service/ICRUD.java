@@ -1,4 +1,7 @@
 package com.codementoring.ebookapi.service;
 
-public interface ICRUD {
+public interface ICRUD<T, ID> {
+
+    T save(T t) throws Exception;
+
 }
