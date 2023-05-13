@@ -1,7 +1,9 @@
 package com.codementoring.ebookapi.controller;
 
 import com.codementoring.ebookapi.dto.BookDTO;
+import com.codementoring.ebookapi.dto.CategoryDTO;
 import com.codementoring.ebookapi.model.Book;
+import com.codementoring.ebookapi.model.Category;
 import com.codementoring.ebookapi.service.IBookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,14 @@ public class BookController {
     public ResponseEntity<BookDTO> create(@Valid @RequestBody BookDTO dto) throws Exception {
         Book obj = service.save(convertToEntity(dto));
         return new ResponseEntity<>(convertToDto(obj), HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDTO> update(@Valid @PathVariable("id") Integer idBook, @RequestBody BookDTO dto) throws Exception {
+        dto.setIdBook(idBook);
+        Book obj = service.update(convertToEntity(dto), idBook);
+        return new ResponseEntity<>(convertToDto(obj), HttpStatus.OK);
     }
 
     private BookDTO convertToDto(Book obj){
