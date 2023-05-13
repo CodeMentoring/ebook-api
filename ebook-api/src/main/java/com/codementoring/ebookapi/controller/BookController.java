@@ -47,6 +47,25 @@ public class BookController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO> readById(@PathVariable("id") Integer id) throws Exception{
+        Book obj = service.readById(id);
+        return new ResponseEntity<>(convertToDto(obj), HttpStatus.OK);
+    }
+
+    @GetMapping("/isbn/{isbn}")
+    public ResponseEntity<List<BookDTO>> findByIsbn(@PathVariable("isbn") String isbn) {
+        List<Book> books = service.findBooksByIsbn(isbn);
+        List<BookDTO> dtos = books.stream().map(this::convertToDto).collect(Collectors.toList());
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     private BookDTO convertToDto(Book obj){
         return mapper.map(obj, BookDTO.class);
     }
