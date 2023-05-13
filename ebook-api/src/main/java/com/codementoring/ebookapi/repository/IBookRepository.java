@@ -1,4 +1,7 @@
 package com.codementoring.ebookapi.repository;
 
-public interface IBookRepository {
+import com.codementoring.ebookapi.model.Book;
+
+public interface IBookRepository extends IGenericRepository<Book, Integer> {
+    boolean existsByIsbn(String isbn);
 }
