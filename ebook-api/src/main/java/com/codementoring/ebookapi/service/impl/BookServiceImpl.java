@@ -10,6 +10,8 @@ import com.codementoring.ebookapi.service.IBookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -61,6 +63,11 @@ public class BookServiceImpl extends CRUDImpl<Book, Integer> implements IBookSer
             // La categoría no existe, lanzar una excepción o realizar alguna acción adicional
             throw new ModelNotFoundException("La categoría con id " + idCategory + " no existe.");
         }
+    }
+
+    @Override
+    public List<Book> findBooksByIsbn(String isbn) {
+        return repo.findByIsbn(isbn);
     }
 
     public boolean isBookDuplicate(String isbn) {
