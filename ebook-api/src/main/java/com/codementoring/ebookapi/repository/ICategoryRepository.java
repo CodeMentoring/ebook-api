@@ -9,6 +9,7 @@ import java.util.List;
 public interface ICategoryRepository extends IGenericRepository<Category, Integer> {
 
     boolean existsByNameOrDescription(String name, String description);
+    boolean existsByNameAndDescription(String name, String description);
     boolean existsByidCategory(Integer idCategory);
 
     @Query("FROM Category c WHERE c.name = ?1 AND c.description LIKE %?2%")
