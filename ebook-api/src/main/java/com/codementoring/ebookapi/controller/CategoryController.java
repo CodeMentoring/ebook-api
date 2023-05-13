@@ -35,6 +35,13 @@ public class CategoryController {
     }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody CategoryDTO dto) throws Exception {
+        dto.setIdCategory(id);
+        Category obj = service.update(convertToEntity(dto), id);
+        return new ResponseEntity<>(convertToDto(obj), HttpStatus.OK);
+    }
+
 
     /////////////////////convert mapper//////////////////
 
