@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -37,6 +39,12 @@ public class BookController {
         dto.setIdBook(idBook);
         Book obj = service.update(convertToEntity(dto), idBook);
         return new ResponseEntity<>(convertToDto(obj), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BookDTO>>  readAll() throws Exception{
+        List<BookDTO> list = service.readAll().stream().map(this::convertToDto).collect(Collectors.toList());
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     private BookDTO convertToDto(Book obj){
